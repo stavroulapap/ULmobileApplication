@@ -6,5 +6,7 @@
     <color name="gray2">#CBCBCB</color>
     <color name="black">#000000</color>
     <color name="purple">#6C63FF</color>
+    <color name="error_red">#F44336</color>
+
 
 </resources>
