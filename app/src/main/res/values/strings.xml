@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">UL_project1</string>
+    <string name="placeholder">Placeholder</string>
+
+    <string name="welcomeLabel">Welcome back</string>
+    <string name="signLabel">sign in to access your account</string>
+    <string name="editEmail">Enter your email</string>
+    <string name="editPassword">Password</string>
+    <string name="checkRemember">Remember me</string>
+    <string name="forgetLabel">Forget Password?</string>
+    <string name="buttonLabel">Next ></string>
+    <string name="newMemberLabel">New Member?</string>
+    <string name="registerNowLabel">Register Now</string>
+
+    <string name="startedLabel">Get Started</string>
+    <string name="byCreatedLabel">by creating a free account</string>
+    <string name="editFullName">Full Name</string>
+    <string name="editValidEmail">Valid Email</string>
+    <string name="editPhoneNumber">Phone Number</string>
+    <string name="editStrongPassword">Strong Password</string>
+    <string name="clickingLabel">By checking the box you agree to our</string>
+    <string name="termsLabel">Terms and Conditions </string>
+    <string name="alreadyMemberLabel">Already a member?</string>
+    <string name="loginLabel">Login</string>
+
+</resources>
