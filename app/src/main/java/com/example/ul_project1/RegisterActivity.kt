@@ -18,11 +18,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        //the following: ρυθμιζει τα περιεχομενα του view ωστε να μην καλυπτει περιοχες οπως status bar,navigation bar
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
 //FOR THE ERROR MESSAGES
         val emailLayout = findViewById<TextInputLayout>(R.id.editValidEmail)
         val emailEditText = findViewById<TextInputEditText>(R.id.editEmail)

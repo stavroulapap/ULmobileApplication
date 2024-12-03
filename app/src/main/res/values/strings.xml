@@ -23,4 +23,7 @@
     <string name="alreadyMemberLabel">Already a member?</string>
     <string name="loginLabel">Login</string>
 
+    <string name="helloText">HELLO WORLD</string>
+
+
 </resources>
