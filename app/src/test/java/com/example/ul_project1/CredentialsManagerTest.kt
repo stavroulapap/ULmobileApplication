@@ -71,9 +71,9 @@ class CredentialsManagerTest {
     @Test
     fun givenFixedCredentials_thenReturnTrue() {
         val credentialsManager = CredentialsManager()
-        //val email = "test@example.com"
-        val email = "test"
-        val password = "1234"
+        val email = "test@gmail.com"
+        //val email = "test"
+        val password = "123456"
         val result = credentialsManager.login(email, password)
         assertTrue(result)
     }

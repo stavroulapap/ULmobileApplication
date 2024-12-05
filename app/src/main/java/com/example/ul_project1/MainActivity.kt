@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.checkRemember)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.checkRemember)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
 
         //FOR THE ERROR MESSAGES
         val emailLayout = findViewById<TextInputLayout>(R.id.editEmail)
@@ -63,6 +63,25 @@ class MainActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "All fields are valid. Proceeding...")
             }
 
+
+            //if email and password are the following goes to another activity (CentralActivity)
+            if (email == "test@gmail.com" && password == "123456") {
+                val intent = Intent(this, CentralActivity::class.java)
+                startActivity(intent)
+            } else {
+                //error message
+                if (email != "test@gmail.com") {
+                    emailLayout.error = "Incorrect email"
+                } else {
+                    emailLayout.error = null
+                }
+
+                if (password != "123456") {
+                    passwordLayout.error = "Incorrect password"
+                } else {
+                    passwordLayout.error = null
+                }
+            }
         }
 
         //CHANGE TO THE OTHER LAYOUT

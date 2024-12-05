@@ -35,7 +35,7 @@ class CredentialsManager {
 
 
     fun login(email: String, password: String): Boolean {
-            return email == "test" && password == "1234"
+            return email == "test@gmail.com" && password == "1234"
 //    fun register(fullname,email,phone,password: String){
 //        credentialsMap.put(email,password)
 //    }
