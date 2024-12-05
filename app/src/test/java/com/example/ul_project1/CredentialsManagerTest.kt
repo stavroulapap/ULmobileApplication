@@ -25,7 +25,7 @@ class CredentialsManagerTest {
     @Test
     fun givenProperEmailFormat_thenReturnTrue() {
         val credentialsManager = CredentialsManager()
-        val email = "email@te.st"
+        val email = "example@email.com"
         val result = credentialsManager.isEmailValid(email)
         assertTrue(result)
     }
@@ -55,6 +55,15 @@ class CredentialsManagerTest {
         val credentialsManager = CredentialsManager()
         val email = "Not an user"
         val password = "Not a password"
+        val result = credentialsManager.login(email, password)
+        assertFalse(result)
+    }
+
+    @Test
+    fun givenEmptyCredentials_thenReturnFalse() {
+        val credentialsManager = CredentialsManager()
+        val email = ""
+        val password = ""
         val result = credentialsManager.login(email, password)
         assertFalse(result)
     }
