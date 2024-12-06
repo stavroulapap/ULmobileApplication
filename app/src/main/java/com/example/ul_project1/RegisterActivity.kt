@@ -18,12 +18,11 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
-        //the following: ρυθμιζει τα περιεχομενα του view ωστε να μην καλυπτει περιοχες οπως status bar,navigation bar
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 //FOR THE ERROR MESSAGES
         val emailLayout = findViewById<TextInputLayout>(R.id.editValidEmail)
         val emailEditText = findViewById<TextInputEditText>(R.id.editEmail)
@@ -39,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val registerButton = findViewById<Button>(R.id.button)
 
-        registerButton.setOnClickListener {
+        registerButton.setOnClickListener {  //the button NEXT in register Layout
             val email = emailEditText.text.toString().trim()
             val name = nameEditText.text.toString().trim()
             val phone = phoneEditText.text.toString().trim()
@@ -85,18 +84,33 @@ class RegisterActivity : AppCompatActivity() {
                 passwordLayout.error = null
             }
 
-            //EVERYTHING IS VALID
+//if everything is valid we create successfully the new user
             if (isValid) {
-                Log.d("RegisterActivity", "All fields are valid. Proceeding...")
+                val credentialsManager = CredentialsManager()
+
+                val isRegistered = credentialsManager.register(email, password)
+                if (isRegistered) {
+                    Log.d("RegisterActivity", "Registration successful")
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    emailLayout.error = "This email is already registered"
+                }
             }
         }
-//CHANGE TO THE OTHER LAYOUT
+
+
+//GOES TO THE LOGIN LAYOUT with the LOGIN LABEL
         val loginNowLabel = findViewById<TextView>(R.id.loginLabel)
 
         loginNowLabel.setOnClickListener {
-            Log.d("Onboarding", "Register now pressed")
-            val goToRegisterIntent = Intent(this, MainActivity::class.java)
-            startActivity(goToRegisterIntent)
+            Log.d("Onboarding", "Login now pressed")
+            val goToLoginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(goToLoginIntent)
+            finish()
         }
+
     }
+
 }

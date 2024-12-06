@@ -1,4 +1,5 @@
 package com.example.ul_project1
+
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -20,7 +21,7 @@ class CredentialsManagerTest {
         val email = "not an email"
         val result = credentialsManager.isEmailValid(email)
         assertFalse(result)
-     }
+    }
 
     @Test
     fun givenProperEmailFormat_thenReturnTrue() {
@@ -79,16 +80,18 @@ class CredentialsManagerTest {
     }
 
     //given proper credentials,when user registers, then create account
-//    @Test
-//    fun givenPrperCredentials_whenUserRegisters_thenCreateAccount(){
-//        val credentialsManager=CredentialsManager()
-//       val email="another@te.st"
-//       val  password="1234b#"
-//        credentialsManager.register("Fullname",email,"600 600 600", password )
-//
-//        val isLoginSuccess= credentialsManager.login(email, password )
-//        assertTrue(isLoginSuccess)
-//    }
+    @Test
+    fun givenProperCredentials_whenUserRegisters_thenCreateAccount() {
+        val credentialsManager = CredentialsManager()
+        val email = "another@te.st"
+        val password = "1234b#"
+        credentialsManager.register(email, password)
+        //credentialsManager.register("Fullname",email,"600 600 600", password )
+
+        val isLoginSuccess = credentialsManager.login(email, password)
+        assertTrue(isLoginSuccess)
+    }
+
     //given already used email, when user registers, then return error
     //given already used email with different casing, when user registers, then return error
     //given used email with different casing, when user logs in, then return success

@@ -4,9 +4,11 @@ import android.util.Log
 
 class CredentialsManager {
 
-//    val credentialsMap = mutableMapOf(
-//        Pair("Key", "Value")
-//    )
+    object Data {  //map for email and password for each user(valid credentials from registerActivity->LoginAct->CentralAct)
+        val credentialsMap = mutableMapOf(
+            Pair("test1@gmail.com", "123456")
+        )
+    }
 
     private val emailPattern = (("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + //format for email
             "\\@" +
@@ -29,16 +31,36 @@ class CredentialsManager {
             Log.e("CredentialsManager", "Password is empty") // show error in Logcat
             return false
         }
-        val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{8,}$" //the password has at least one number,lowercase,uppercase,special char,8 digits
+        val passwordPattern =
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$" //the password has at least one number,lowercase,uppercase,special char,6 digits
         return Regex(passwordPattern).matches(password)
     }
 
+    //registration for the new user
+    fun register(email: String, password: String): Boolean {
+        val normalizedEmail = email.lowercase()
 
-    fun login(email: String, password: String): Boolean {
-            return email == "test@gmail.com" && password == "1234"
-//    fun register(fullname,email,phone,password: String){
-//        credentialsMap.put(email,password)
-//    }
+        //we check if the email already exists
+        if (Data.credentialsMap.containsKey(normalizedEmail)) {
+            return false //if the email already exists, return false
+        }
 
+        //if the email doesnt exist we add it with the password
+        Data.credentialsMap[normalizedEmail] = password
+        return true
     }
+
+
+    //method for the login
+    fun login(email: String, password: String): Boolean {
+        val normalizedEmail = email.lowercase()
+
+        // we check if the email exists and the password is correct
+        return Data.credentialsMap[normalizedEmail] == password
+        //return email == "test@gmail.com" && password == "1234"--->for default
+    }
+
+
 }
+
+
