@@ -18,6 +18,8 @@ class CredentialsManager {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"))
 
+    val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$" //the password has at least one number,lowercase,uppercase,special char,6 digits
+
     fun isEmailValid(email: String): Boolean {
         return Regex(emailPattern).matches(email)
     }
@@ -31,8 +33,6 @@ class CredentialsManager {
             Log.e("CredentialsManager", "Password is empty") // show error in Logcat
             return false
         }
-        val passwordPattern =
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$" //the password has at least one number,lowercase,uppercase,special char,6 digits
         return Regex(passwordPattern).matches(password)
     }
 
