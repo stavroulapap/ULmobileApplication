@@ -25,5 +25,9 @@
 
     <string name="helloText">HELLO WORLD</string>
 
+    <string name="fragmentA">Fragment A</string>
+    <string name="fragmentB">Fragment B</string>
+    <string name="switchButton">Switch</string>
+
 
 </resources>
