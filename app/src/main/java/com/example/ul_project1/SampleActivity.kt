@@ -24,7 +24,6 @@ class SampleActivity : AppCompatActivity() {
 
             val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view)
 
-
             supportFragmentManager.commit {
                 if (currentFragment is FragmentA) {
                     replace<FragmentB>(R.id.fragment_container_view)
