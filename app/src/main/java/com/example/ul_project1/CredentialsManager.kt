@@ -51,7 +51,6 @@ class CredentialsManager {
     }
 
 
-    //method for the login
     fun login(email: String, password: String): Boolean {
         val normalizedEmail = email.lowercase()
 
@@ -59,8 +58,6 @@ class CredentialsManager {
         return Data.credentialsMap[normalizedEmail] == password
         //return email == "test@gmail.com" && password == "1234"--->for default
     }
-
-
 }
 
 

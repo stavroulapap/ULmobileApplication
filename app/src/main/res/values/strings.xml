@@ -28,6 +28,9 @@
     <string name="fragmentA">Fragment A</string>
     <string name="fragmentB">Fragment B</string>
     <string name="switchButton">Switch</string>
+    <string name="backToA">Go Back to Fragment A </string>
+    <string name="backToB">Go Back to Fragment B </string>
+
 
 
 </resources>
