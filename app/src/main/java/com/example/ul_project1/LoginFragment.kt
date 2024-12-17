@@ -63,11 +63,11 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
-        val emailLayout = view.findViewById<TextInputLayout>(R.id.editEmail)
-        val emailEditText = view.findViewById<TextInputEditText>(R.id.email)
-        val passwordLayout = view.findViewById<TextInputLayout>(R.id.editPassword)
-        val passwordEditText = view.findViewById<TextInputEditText>(R.id.password)
-        val loginButton = view.findViewById<Button>(R.id.buttonLabel)
+        val emailLayout = view.findViewById<TextInputLayout>(R.id.loginEmailInputLayout)
+        val emailEditText = view.findViewById<TextInputEditText>(R.id.loginEmailInput)
+        val passwordLayout = view.findViewById<TextInputLayout>(R.id.loginPasswordInputLayout)
+        val passwordEditText = view.findViewById<TextInputEditText>(R.id.loginPasswordInput)
+        val loginButton = view.findViewById<Button>(R.id.loginButton)
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()
@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-        val registerNowLabel = view.findViewById<TextView>(R.id.registerNowLabel)
+        val registerNowLabel = view.findViewById<TextView>(R.id.loginToRegisterLink)
         registerNowLabel.setOnClickListener {
             Log.d("LoginFragment", "Register now pressed")
             loadFragment(RegisterFragment())

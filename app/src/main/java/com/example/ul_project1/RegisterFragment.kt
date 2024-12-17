@@ -80,15 +80,15 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_register, container, false)
 
-        val nameLayout = view.findViewById<TextInputLayout>(R.id.editFullName)
-        val nameEditText = view.findViewById<TextInputEditText>(R.id.editName)
-        val emailLayout = view.findViewById<TextInputLayout>(R.id.editValidEmail)
-        val emailEditText = view.findViewById<TextInputEditText>(R.id.editEmail)
-        val phoneLayout = view.findViewById<TextInputLayout>(R.id.editPhoneNumber)
-        val phoneEditText = view.findViewById<TextInputEditText>(R.id.editPhone)
-        val passwordLayout = view.findViewById<TextInputLayout>(R.id.editStrongPassword)
-        val passwordEditText = view.findViewById<TextInputEditText>(R.id.editPassword)
-        val registerButton = view.findViewById<Button>(R.id.button)
+        val nameLayout = view.findViewById<TextInputLayout>(R.id.registerFullNameInputLayout)
+        val nameEditText = view.findViewById<TextInputEditText>(R.id.registerFullNameInput)
+        val emailLayout = view.findViewById<TextInputLayout>(R.id.registerValidEmailInputLayout)
+        val emailEditText = view.findViewById<TextInputEditText>(R.id.registerValidEmailInput)
+        val phoneLayout = view.findViewById<TextInputLayout>(R.id.registerPhoneNumberInputLayout)
+        val phoneEditText = view.findViewById<TextInputEditText>(R.id.registerFullNumberInput)
+        val passwordLayout = view.findViewById<TextInputLayout>(R.id.registerStrongPasswordInputLayout)
+        val passwordEditText = view.findViewById<TextInputEditText>(R.id.registerStrongPasswordInput)
+        val registerButton = view.findViewById<Button>(R.id.registerButton)
 
         registerButton.setOnClickListener {
             val name = nameEditText.text.toString().trim()
@@ -115,7 +115,7 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        val loginNowLabel = view.findViewById<TextView>(R.id.loginLabel)
+        val loginNowLabel = view.findViewById<TextView>(R.id.registerToLoginLink)
         loginNowLabel.setOnClickListener {
             Log.d("Onboarding", "Login now pressed")
             loadFragment(LoginFragment())
