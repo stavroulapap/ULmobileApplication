@@ -36,7 +36,7 @@ class FragmentA: Fragment(R.layout.fragment_a) {
 
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view,savedInstanceState)
-        view.findViewById<View>(R.id.button).setOnClickListener{
+        view.findViewById<View>(R.id.registerButton).setOnClickListener{
             Log.d("FragmentA", "Button clicked")
             listener?.onGoToBRessed()
         }
