@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
-
-<!--    <EditText-->
-<!--        android:layout_width="412dp"-->
-<!--        android:layout_height="38dp"-->
-<!--        android:hint="testing plain text.. "-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    tools:context=".RegisterFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -29,7 +21,7 @@
         app:srcCompat="@drawable/picture" />
 
     <TextView
-        android:id="@+id/startedLabel"
+        android:id="@+id/getStartedLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -39,12 +31,12 @@
         android:text="@string/startedLabel"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="@id/logoImage"
+        app:layout_constraintTop_toTopOf="@id/logoImage"
         app:lineHeight="29.26dp" />
 
     <TextView
-        android:id="@+id/byCreatedLabel"
+        android:id="@+id/getStartedSubTitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -53,12 +45,12 @@
         android:text="@string/byCreatedLabel"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="@id/logoImage"
+        app:layout_constraintTop_toTopOf="@id/logoImage"
         app:lineHeight="17.07dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editFullName"
+        android:id="@+id/registerFullNameInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -72,18 +64,18 @@
         app:endIconDrawable="@drawable/ic_user"
         app:endIconMode="custom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" >
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/registerFullNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editValidEmail"
+        android:id="@+id/registerValidEmailInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -96,17 +88,17 @@
         app:endIconDrawable="@drawable/ic_mail"
         app:endIconMode="custom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editFullName"
+        app:layout_constraintTop_toBottomOf="@id/registerFullNameInputLayout"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editEmail"
+            android:id="@+id/registerValidEmailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editPhoneNumber"
+        android:id="@+id/registerPhoneNumberInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -119,17 +111,17 @@
         app:endIconDrawable="@drawable/ic_phone"
         app:endIconMode="custom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editValidEmail"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintTop_toBottomOf="@id/registerValidEmailInputLayout"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editPhone"
+            android:id="@+id/registerFullNumberInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editStrongPassword"
+        android:id="@+id/registerStrongPasswordInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -142,17 +134,17 @@
         app:endIconDrawable="@drawable/ic_lock"
         app:endIconMode="custom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editPhoneNumber"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintTop_toBottomOf="@id/registerPhoneNumberInputLayout"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editPassword"
+            android:id="@+id/registerStrongPasswordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
-        android:id="@+id/clickingLabel"
+        android:id="@+id/registerCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -164,10 +156,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editStrongPassword" />
+        app:layout_constraintTop_toBottomOf="@id/registerStrongPasswordInputLayout" />
 
     <TextView
-        android:id="@+id/Terms"
+        android:id="@+id/registerTermsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
@@ -179,12 +171,12 @@
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.607"
-        app:layout_constraintStart_toEndOf="@id/clickingLabel"
-        app:layout_constraintTop_toBottomOf="@id/editStrongPassword"
+        app:layout_constraintStart_toEndOf="@id/registerCheckBox"
+        app:layout_constraintTop_toBottomOf="@id/registerStrongPasswordInputLayout"
         app:lineHeight="10.35dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -194,10 +186,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editStrongPassword" />
+        app:layout_constraintTop_toBottomOf="@id/registerStrongPasswordInputLayout" />
 
     <TextView
-        android:id="@+id/alreadyMemberLabel"
+        android:id="@+id/registerAlreadyMemberLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="73dp"
@@ -209,10 +201,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        app:layout_constraintTop_toBottomOf="@id/registerButton" />
 
     <TextView
-        android:id="@+id/loginLabel"
+        android:id="@+id/registerToLoginLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -221,7 +213,7 @@
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/alreadyMemberLabel"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        app:layout_constraintStart_toEndOf="@id/registerAlreadyMemberLabel"
+        app:layout_constraintTop_toBottomOf="@id/registerButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

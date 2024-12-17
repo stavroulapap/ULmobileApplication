@@ -1,19 +1,18 @@
 package com.example.ul_project1
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import android.util.Patterns
-import android.widget.Button
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterFragment : Fragment() {
 
     private fun validateName(name: String, nameLayout: TextInputLayout): Boolean {
         var isValid = true
@@ -51,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
             phoneLayout.error = "Phone number cannot be empty"
             isValid = false
         } else if (!phone.matches(Regex("^[0-9]{10}$"))) {
-            phoneLayout.error = "Please enter a valid 10-digit phone number "
+            phoneLayout.error = "Please enter a valid 10-digit phone number"
             isValid = false
         } else {
             phoneLayout.error = null
@@ -76,67 +75,59 @@ class RegisterActivity : AppCompatActivity() {
         return isValid
     }
 
-    private fun navigateToLoginActivity() {
-        val goToLoginIntent = Intent(this, LoginActivity::class.java)
-        startActivity(goToLoginIntent)
-        finish()
-    }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_register)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_register, container, false)
 
-        //FOR THE ERROR MESSAGES
-        val nameLayout = findViewById<TextInputLayout>(R.id.editFullName)
-        val nameEditText = findViewById<TextInputEditText>(R.id.editName)
-        val emailLayout = findViewById<TextInputLayout>(R.id.editValidEmail)
-        val emailEditText = findViewById<TextInputEditText>(R.id.editEmail)
-        val phoneLayout = findViewById<TextInputLayout>(R.id.editPhoneNumber)
-        val phoneEditText = findViewById<TextInputEditText>(R.id.editPhone)
-        val passwordLayout = findViewById<TextInputLayout>(R.id.editStrongPassword)
-        val passwordEditText = findViewById<TextInputEditText>(R.id.editPassword)
-        val registerButton = findViewById<Button>(R.id.button)
+        val nameLayout = view.findViewById<TextInputLayout>(R.id.registerFullNameInputLayout)
+        val nameEditText = view.findViewById<TextInputEditText>(R.id.registerFullNameInput)
+        val emailLayout = view.findViewById<TextInputLayout>(R.id.registerValidEmailInputLayout)
+        val emailEditText = view.findViewById<TextInputEditText>(R.id.registerValidEmailInput)
+        val phoneLayout = view.findViewById<TextInputLayout>(R.id.registerPhoneNumberInputLayout)
+        val phoneEditText = view.findViewById<TextInputEditText>(R.id.registerFullNumberInput)
+        val passwordLayout = view.findViewById<TextInputLayout>(R.id.registerStrongPasswordInputLayout)
+        val passwordEditText = view.findViewById<TextInputEditText>(R.id.registerStrongPasswordInput)
+        val registerButton = view.findViewById<Button>(R.id.registerButton)
 
-        registerButton.setOnClickListener {  //the button NEXT in register Layout
+        registerButton.setOnClickListener {
             val name = nameEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
             val phone = phoneEditText.text.toString().trim()
 
-            //check if email password name phone are valid
+            // Check if name, email, phone, and password are valid
             val isNameValid = validateName(name, nameLayout)
             val isEmailValid = validateEmail(email, emailLayout)
             val isPasswordValid = validatePassword(password, passwordLayout)
             val isPhoneValid = validatePhone(phone, phoneLayout)
-
 
             if (isNameValid && isEmailValid && isPasswordValid && isPhoneValid) {
                 val credentialsManager = CredentialsManager()
 
                 val isRegistered = credentialsManager.register(email, password)
                 if (isRegistered) {
-                    Log.d("RegisterActivity", "Registration successful")
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    Log.d("RegisterFragment", "Registration successful")
+                    loadFragment(LoginFragment())
                 } else {
                     emailLayout.error = "This email is already registered"
                 }
             }
         }
 
-
-        val loginNowLabel = findViewById<TextView>(R.id.loginLabel)
+        val loginNowLabel = view.findViewById<TextView>(R.id.registerToLoginLink)
         loginNowLabel.setOnClickListener {
             Log.d("Onboarding", "Login now pressed")
-            navigateToLoginActivity()
+            loadFragment(LoginFragment())
+        }
+        return view
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.fragment_container_view, fragment) // Replace the current Fragment with the new one
+            addToBackStack(null) // added to back stack to allow navigation back
+            commit()
         }
     }
 }
