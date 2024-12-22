@@ -7,20 +7,34 @@
     tools:context=".CentralActivity">
 
     <TextView
-        android:id="@+id/helloLabel"
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="180dp"
-        android:contentDescription="@string/placeholder"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/helloText"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:text="@string/japanese_food_title"
+        android:textColor="@color/purple"
+        android:textStyle="bold"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lineHeight="29.26dp" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- load Fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipelist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutTitle"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
 
@@ -18,11 +17,13 @@ class LoginFragment : Fragment() {
     private fun validateEmail(email: String, emailLayout: TextInputLayout): Boolean {
         var isValid = true
 
+        val credentialsManager = (activity as SampleActivity).getCredentialsManager()
+
         if (email.isEmpty()) {
             emailLayout.error = "Email cannot be empty"
             isValid = false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailLayout.error = "Please enter a valid email address. Example: example@gmail.com"
+        } else if (!credentialsManager.isEmailValid(email)) {
+            emailLayout.error = "Please enter a valid email address (example@gmail.com)"
             isValid = false
         } else {
             emailLayout.error = null
@@ -34,11 +35,13 @@ class LoginFragment : Fragment() {
     private fun validatePassword(password: String, passwordLayout: TextInputLayout): Boolean {
         var isValid = true
 
+        val credentialsManager = (activity as SampleActivity).getCredentialsManager()
+
         if (password.isEmpty()) {
             passwordLayout.error = "Password cannot be empty"
             isValid = false
-        } else if (password.length < 6) {
-            passwordLayout.error = "Password must be at least 6 characters long"
+        } else if (!credentialsManager.isPasswordValid(password)) {
+            passwordLayout.error = "Password must be at least 6 characters long (number, uppercase letter, lowercase letter, special character)"
             isValid = false
         } else {
             passwordLayout.error = null
@@ -48,17 +51,32 @@ class LoginFragment : Fragment() {
     }
 
 
-    private fun navigateToCentralActivity(email: String, password: String,emailLayout: TextInputLayout) {
+    private fun navigateToCentralActivity(email: String, password: String, passwordLayout: TextInputLayout, emailLayout: TextInputLayout) {
         val credentialsManager = (activity as SampleActivity).getCredentialsManager()
-        if (credentialsManager.login(email, password)) {
-            Log.d("LoginFragment", "Login successful")
-            val intent = Intent(activity, CentralActivity::class.java)
-            startActivity(intent)
+
+        val isEmailValid = validateEmail(email, emailLayout)
+        val isPasswordValid = validatePassword(password, passwordLayout)
+
+        if (!isEmailValid || !isPasswordValid) {
+            emailLayout.error = "Please enter a valid email or password."
         } else {
-            Log.d("LoginFragment", "Invalid credentials")
-            emailLayout.error = "Invalid email or password"
+            if (email == "test@gmail.com" && password == "Sp1234_#") {
+                Log.d("LoginFragment", "Login successful (default credentials)")
+                val intent = Intent(activity, CentralActivity::class.java)
+                startActivity(intent)
+            } else {
+                if (credentialsManager.login(email, password)) {
+                    Log.d("LoginFragment", "Login successful (from credentials manager)")
+                    val intent = Intent(activity, CentralActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Log.d("LoginFragment", "Invalid credentials")
+                    emailLayout.error = "Invalid email or password"
+                }
+            }
         }
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
@@ -70,14 +88,15 @@ class LoginFragment : Fragment() {
         val loginButton = view.findViewById<Button>(R.id.loginButton)
 
         loginButton.setOnClickListener {
-            val email = emailEditText.text.toString().trim()
+            val email = emailEditText.text.toString().trim().lowercase()
             val password = passwordEditText.text.toString().trim()
 
             val isEmailValid = validateEmail(email, emailLayout)
             val isPasswordValid = validatePassword(password, passwordLayout)
 
+
             if (isEmailValid && isPasswordValid) {
-                    navigateToCentralActivity(email,password,emailLayout)
+                    navigateToCentralActivity(email,password,passwordLayout,emailLayout)
             }
         }
 

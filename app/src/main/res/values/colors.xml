@@ -7,6 +7,8 @@
     <color name="black">#000000</color>
     <color name="purple">#6C63FF</color>
     <color name="error_red">#F44336</color>
+    <color name="blue">#0000FF</color>
+
 
 
 </resources>
