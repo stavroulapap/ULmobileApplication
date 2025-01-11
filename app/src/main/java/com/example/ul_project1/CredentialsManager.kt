@@ -10,7 +10,7 @@ class CredentialsManager {
         )
     }
 
-    private val emailPattern = (("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + //format for email
+    private val emailPattern = (("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
             "(" +
@@ -30,7 +30,7 @@ class CredentialsManager {
 
     fun isPasswordValid(password: String): Boolean {
         if (password.isBlank()) {
-            Log.e("CredentialsManager", "Password is empty") // show error in Logcat
+            Log.e("CredentialsManager", "Password is empty")
             return false
         }
         return Regex(passwordPattern).matches(password)
@@ -56,7 +56,7 @@ class CredentialsManager {
 
         // we check if the email exists and the password is correct
         return Data.credentialsMap[normalizedEmail] == password
-        //return email == "test@gmail.com" && password == "1234"--->for default
+        //return email == "test@gmail.com" && password == "Sp1234_#"--->for default
     }
 }
 

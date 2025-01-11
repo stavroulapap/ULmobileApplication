@@ -29,11 +29,12 @@ class RegisterFragment : Fragment() {
 
     private fun validateEmail(email: String, emailLayout: TextInputLayout): Boolean {
         var isValid = true
+        val credentialsManager = (activity as SampleActivity).getCredentialsManager()
 
         if (email.isEmpty()) {
             emailLayout.error = "Email cannot be empty"
             isValid = false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!credentialsManager.isEmailValid(email)) {
             emailLayout.error = "Please enter a valid email address. Example: example@gmail.com"
             isValid = false
         } else {
@@ -61,12 +62,13 @@ class RegisterFragment : Fragment() {
 
     private fun validatePassword(password: String, passwordLayout: TextInputLayout): Boolean {
         var isValid = true
+        val credentialsManager = (activity as SampleActivity).getCredentialsManager()
 
         if (password.isEmpty()) {
             passwordLayout.error = "Password cannot be empty"
             isValid = false
-        } else if (password.length < 6) {
-            passwordLayout.error = "Password must be at least 6 characters long"
+        } else if (!credentialsManager.isPasswordValid(password)) {
+            passwordLayout.error = "Password must be at least 6 characters long. At least one: number, uppercase letter, lowercase letter, special character."
             isValid = false
         } else {
             passwordLayout.error = null
@@ -74,7 +76,6 @@ class RegisterFragment : Fragment() {
 
         return isValid
     }
-
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -92,7 +93,7 @@ class RegisterFragment : Fragment() {
 
         registerButton.setOnClickListener {
             val name = nameEditText.text.toString().trim()
-            val email = emailEditText.text.toString().trim()
+            val email = emailEditText.text.toString().trim().lowercase()
             val password = passwordEditText.text.toString().trim()
             val phone = phoneEditText.text.toString().trim()
 

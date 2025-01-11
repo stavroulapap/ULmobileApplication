@@ -31,6 +31,19 @@
     <string name="backToA">Go Back to Fragment A </string>
     <string name="backToB">Go Back to Fragment B </string>
 
+    <string name="share_button">Share this recipe</string>
+    <string name="like_button">Like this recipe</string>
+
+    <string name="japanese_food_title">Japanese food</string>
+
+    <string name="recipe_black_karaage_desc">Bento Box with Karaage as a main is called Karaage Bento. It consists of cooked rice, karaage (Japanese fried chicken) and a small amount of a few side dishes.</string>
+    <string name="recipe_seafood_udon_desc">Seafood yaki udon is a Japanese seafood udon stir fry that’s easy, and delicious. It’s made with assorted seafood like shrimp, squid, and scallops that are tossed with chewy udon noodles and a simple savory sauce.</string>
+    <string name="recipe_tonkotsu_ramen_desc">Tonkotsu ramen has five major ingredients. Broth,noodles,pork,egg,tare.Tonkotsu broth is the heart and soul of any tonkotsu ramen. It’s not difficult but it takes time – 12 to 18 hours.</string>
+    <string name="recipe_takoyaki_desc">Takoyaki is a dish made of wheat batter and filling, usually octopus or a similar type of seafood. Takoyaki is grilled in pans with small half-dome compartments and then flipped to give them their round shape.</string>
+    <string name="recipe_tempura_desc">Tempura is a typical Japanese dish that usually consists of seafood and vegetables that have been coated in a thin batter and deep fried.</string>
+    <string name="recipe_yakitori_shrimp_desc">Is a Japanese type of skewered chicken. Its preparation involves attaching the meat to a skewer, typically made of steel, bamboo, or similar materials, after which it is grilled over a charcoal fire.</string>
+    <string name="yakisoba_desc">Yakisoba is a fried noodle dish made by barbecuing or stir-frying a combination of noodles, sliced cabbage, pork, carrot and other vegetables, and a barbecue style yakisoba sauce.</string>
+
 
 
 </resources>
