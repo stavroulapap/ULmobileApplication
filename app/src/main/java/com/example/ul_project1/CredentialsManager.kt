@@ -1,6 +1,9 @@
 package com.example.ul_project1
 //import android.util.Patterns
 import android.util.Log
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class CredentialsManager {
 
@@ -57,6 +60,17 @@ class CredentialsManager {
         // we check if the email exists and the password is correct
         return Data.credentialsMap[normalizedEmail] == password
         //return email == "test@gmail.com" && password == "Sp1234_#"--->for default
+    }
+
+    private val _isLoggedIn = MutableStateFlow(false)
+    val isLoggedIn: StateFlow<Boolean> = _isLoggedIn.asStateFlow()
+
+    fun login() {
+        _isLoggedIn.value = true
+    }
+
+    fun logout() {
+        _isLoggedIn.value = false
     }
 }
 
